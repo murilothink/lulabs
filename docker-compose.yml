@@ -11,6 +11,27 @@ services:
       POSTGRES_DB: lulabs_db
     volumes:
       - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user"]
+      interval: 5s
+      retries: 5
+      timeout: 5s
+
+  app:
+    build:
+      context: .
+    container_name: flask_app
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: docker
+      DATABASE_URI: postgresql://user:password@db:5432/lulabs_db
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    working_dir: /app
 
 volumes:
   pg_data:
