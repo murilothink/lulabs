@@ -1,6 +1,6 @@
-from models.models import User, Order, Product
 from datetime import datetime
 
+from models.models import Order, Product, User
 
 
 class UserDataProcessor:
@@ -10,16 +10,16 @@ class UserDataProcessor:
         for line in lines:
             try:
                 # Extração dos campos
-                user_id = int(line[:10].strip().lstrip('0') or -1)
+                user_id = int(line[:10].strip().lstrip("0") or -1)
                 name = line[10:55].strip()
-                order_id = int(line[55:65].strip().lstrip('0') or -1)
-                product_id = int(line[65:75].strip().lstrip('0') or 0)  # Permitir product_id = 0
+                order_id = int(line[55:65].strip().lstrip("0") or -1)
+                product_id = int(line[65:75].strip().lstrip("0") or 0)  # Permitir product_id = 0
                 value_str = line[75:87].strip()
                 date_str = line[87:95].strip()
 
                 # Conversão dos campos válidos
                 value = float(value_str)
-                date = datetime.strptime(date_str, '%Y%m%d').date()
+                date = datetime.strptime(date_str, "%Y%m%d").date()
 
             except Exception as e:
                 # Registro do erro e continuação
@@ -44,5 +44,3 @@ class UserDataProcessor:
             order.total += value
 
         return users_data
-
-

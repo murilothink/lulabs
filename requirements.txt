@@ -2,3 +2,5 @@ Flask==2.3.2
 Flask-SQLAlchemy==3.0.2
 psycopg2-binary==2.9.10
 Flask-Migrate==4.0.4
+black==24.10.0
+isort==5.12.0

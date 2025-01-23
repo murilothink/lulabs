@@ -1,13 +1,14 @@
 import unittest
-from unittest.mock import patch, MagicMock
 from datetime import datetime
+from unittest.mock import MagicMock, patch
+
 from src.services.data_processor import UserDataProcessor
 
 
 class TestUserDataProcessor(unittest.TestCase):
-    @patch('src.models.models.User')
-    @patch('src.models.models.Order')
-    @patch('src.models.models.Product')
+    @patch("src.models.models.User")
+    @patch("src.models.models.Order")
+    @patch("src.models.models.Product")
     def test_process_valid_data(self, MockProduct, MockOrder, MockUser):
         # Configura os mocks para User, Order e Product
         mock_user_instance = MagicMock()
@@ -55,9 +56,9 @@ class TestUserDataProcessor(unittest.TestCase):
         # Verifica se nenhum usuário foi processado
         self.assertEqual(len(result), 0)  # Nenhum usuário deve ser retornado
 
-    @patch('src.models.models.User')
-    @patch('src.models.models.Order')
-    @patch('src.models.models.Product')
+    @patch("src.models.models.User")
+    @patch("src.models.models.Order")
+    @patch("src.models.models.Product")
     def test_process_partial_data(self, MockProduct, MockOrder, MockUser):
         # Dados de entrada com linhas mistas (válidas e inválidas)
         lines = [

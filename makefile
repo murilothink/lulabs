@@ -83,3 +83,8 @@ logs:
 # Testar a aplicação
 test:
 	$(DOCKER_COMPOSE) exec $(APP_SERVICE) $(PYTHON) -m unittest discover -s tests
+
+#Padroniza o Codigo
+lint-fix:
+	black -l 100 -t py310 . --config pyproject.toml && \
+	isort src/ tests/ ai/

@@ -1,22 +1,23 @@
-from flask import Blueprint, request, jsonify
-from models.models import db, User, Order, Product
-from services.data_processor import UserDataProcessor
-from sqlalchemy.exc import IntegrityError
 import traceback
 from datetime import datetime
 
-user_blueprint = Blueprint('user', __name__)
+from flask import Blueprint, jsonify, request
+from sqlalchemy.exc import IntegrityError
+
+from models.models import Order, Product, User, db
+from services.data_processor import UserDataProcessor
+
+user_blueprint = Blueprint("user", __name__)
 data_processor = UserDataProcessor()
 
 
-
-@user_blueprint.route('/upload', methods=['POST'])
+@user_blueprint.route("/upload", methods=["POST"])
 def upload_file():
-    if 'file' not in request.files:
+    if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
 
-    file = request.files['file']
-    lines = file.stream.read().decode('utf-8').splitlines()
+    file = request.files["file"]
+    lines = file.stream.read().decode("utf-8").splitlines()
 
     try:
         users_data = data_processor.process(lines)
@@ -40,7 +41,7 @@ def upload_file():
                             id=order_data.id,
                             user_id=user.user_id,
                             date=order_data.date,
-                            total=order_data.total
+                            total=order_data.total,
                         )
                         db.session.add(order)
                     else:
@@ -56,7 +57,7 @@ def upload_file():
                             product = Product(
                                 order_id=order_data.id,
                                 product_id=product_data.product_id,
-                                value=product_data.value
+                                value=product_data.value,
                             )
                             db.session.add(product)
 
@@ -68,10 +69,10 @@ def upload_file():
         return jsonify({"error": f"Unexpected error: {str(e)}"}), 500
 
 
-@user_blueprint.route('/users', methods=['GET'])
+@user_blueprint.route("/users", methods=["GET"])
 def get_users():
-    user_id = request.args.get('user_id', type=int)
-    date_filter = request.args.get('date')
+    user_id = request.args.get("user_id", type=int)
+    date_filter = request.args.get("date")
 
     # Validação da data, se fornecida
     if date_filter:
@@ -102,7 +103,7 @@ def get_users():
         ]
 
         response = {
-            "user_id": user.user_id, 
+            "user_id": user.user_id,
             "name": user.name,
             "orders": orders,
         }
@@ -131,4 +132,3 @@ def get_users():
         ]
 
     return jsonify(response)
-

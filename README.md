@@ -73,7 +73,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 | `make reset-db`        | Reinicia o banco de dados do zero.                                                     |
 | `make logs`            | Exibe os logs do container Flask.                                                      |
 | `make test`            | Executa os testes dentro do container Flask.                                           |
-
+| `make fix-lint`        | Padronizar e organizar o código.                                           |
 ---
 
 ## **Endpoints**
