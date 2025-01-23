@@ -35,17 +35,22 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    cd <nome-do-repositorio>
    ```
 
-2. Instale o Docker e o Docker Compose (caso ainda não tenha):
+2. Configura o ambiente e instala o Docker e Docker Compose:
+   ```bash
+   make setup
+   ```
+
+3. Instale o Docker e o Docker Compose (caso ainda não tenha):
    ```bash
    make install-docker
    ```
 
-3. Inicie os serviços (Flask e PostgreSQL):
+4. Inicie os serviços (Flask e PostgreSQL):
    ```bash
    make run
    ```
 
-4. Verifique os logs para garantir que os serviços estão funcionando:
+5. Verifique os logs para garantir que os serviços estão funcionando:
    ```bash
    make logs
    ```
@@ -54,19 +59,20 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
 ## **Comandos do Makefile**
 
-| Comando                | Descrição                                          |
-|------------------------|--------------------------------------------------|
-| `make install-docker`  | Instala Docker e Docker Compose no sistema.       |
-| `make run`             | Constrói e inicia os serviços em background.      |
-| `make stop`            | Para os serviços.                                 |
-| `make bash`            | Abre um shell no container Flask.                 |
-| `make install`         | Instala dependências dentro do container Flask.          |
-| `make migrations`      | Cria as migrations do banco de dados.             |
-| `make upgrade`         | Aplica as migrations no banco de dados.           |
-| `make clean`           | Remove containers, volumes e imagens órfãs.       |
-| `make reset-db`        | Reinicia o banco de dados do zero.                |
-| `make logs`            | Exibe os logs do container Flask.                 |
-| `make test`            | Executa os testes dentro do container Flask.      |
+| Comando                | Descrição                                                                              |
+|------------------------|----------------------------------------------------------------------------------------|
+| `make setup`           | Configura o ambiente e dependência e Instala Docker e Docker Compose no sistema.       |
+| `make install-docker`  | Instala Docker e Docker Compose no sistema.                                            |
+| `make run`             | Constrói e inicia os serviços em background.                                           |
+| `make stop`            | Para os serviços.                                                                      |
+| `make bash`            | Abre um shell no container Flask.                                                      |
+| `make install`         | Instala dependências dentro do container Flask.                                        |
+| `make migrations`      | Cria as migrations do banco de dados.                                                  |
+| `make upgrade`         | Aplica as migrations no banco de dados.                                                |
+| `make clean`           | Remove containers, volumes e imagens órfãs.                                            |
+| `make reset-db`        | Reinicia o banco de dados do zero.                                                     |
+| `make logs`            | Exibe os logs do container Flask.                                                      |
+| `make test`            | Executa os testes dentro do container Flask.                                           |
 
 ---
 
@@ -80,7 +86,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 - **Exemplo de Uso:**
 
   ```bash
-  curl -X POST -F "file=@seuarquivo.txt" http://localhost:5000/upload
+  curl -X POST -F "file=@/caminho/src/tests/seuarquivo.txt" http://localhost:5000/upload
   ```
 
 - **Resposta de Sucesso:**

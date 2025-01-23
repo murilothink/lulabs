@@ -9,7 +9,6 @@ args = $(filter-out $@,$(MAKECMDGOALS))
 # Alvo padrão (ajuda)
 help:
 	@echo "Comandos disponíveis:"
-	@echo "  make setup			      - Prepara o Setup"
 	@echo "  make install-docker      - Instala Docker e Docker Compose"
 	@echo "  make run                 - Constrói e inicia os serviços"
 	@echo "  make stop                - Para os serviços"
@@ -29,7 +28,7 @@ setup:
 	pip install uv==0.5.11 && \
 	uv pip install -r 'requirements.txt'
 	make install-docker
-
+	
 # Instalação do Docker e Docker Compose
 install-docker:
 	@echo "Atualizando repositórios..."
