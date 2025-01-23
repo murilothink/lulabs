@@ -430,3 +430,55 @@ psql -h localhost -p 5432 -U user -d lulabs_db
 
 Se precisar de mais detalhes ou suporte, entre em contato! 🚀
 
+## **Testando a Aplicação**
+
+1. Execute os testes automatizados dentro do container Flask:
+   ```bash
+   make test
+   ```
+
+2. Verifique os resultados para garantir que tudo está funcionando corretamente.
+
+---
+
+### Captura de Tela dos Resultados
+
+- **Endpoint:** 
+
+  ```bash
+  curl -X GET "http://localhost:5000/users?user_id=70"
+  ```
+
+![http://localhost:5000/users?user_id=70](./imagem/2025-01-23_20-44.png)
+
+- **Endpoint:** 
+
+  ```bash
+  curl -X GET "http://127.0.0.1:5000/users?date=2021-11-13"
+  ```
+
+![http://127.0.0.1:5000/users?date=2021-11-13](./imagem/date.png)
+
+- **PostgreSQL:** 
+
+  ```bash
+  SELECT user_id, name
+  FROM public.users;
+  ```
+  
+![users](./imagem/users.png)
+
+
+  ```bash
+    SELECT id, order_id, product_id, value
+    FROM public.products;
+  ```
+  
+![products](./imagem/products.png)
+
+  ```bash
+    SELECT *
+    FROM public.orders;
+  ```
+  
+![products](./imagem/orders.png)
