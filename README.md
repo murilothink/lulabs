@@ -441,7 +441,7 @@ Se precisar de mais detalhes ou suporte, entre em contato! 🚀
 
 ---
 
-### Captura de Tela dos Resultados
+## Captura de Tela dos Resultados
 
 - **Endpoint:** 
 
